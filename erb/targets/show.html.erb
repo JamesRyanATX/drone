@@ -1,0 +1,32 @@
+<article>
+  <h3>
+    Targets :: <%= record.id %>
+  </h3>
+
+  <section>
+    <nav>
+      <button disabled><i class="fa fa-trash"></i> &nbsp;Remove</button>
+    </nav>
+    <table>
+      <tbody>
+        <% record.attributes.keys.sort.each do |attribute| %>
+          <tr>
+            <td><%= attribute %>:</td>
+            <td>
+              <%= record.attributes[attribute] %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <h3>
+    Captures
+  </h3>
+
+  <section>
+    <img src="/targets/<%= record.id %>.png?recipe=thumbnail">
+  </section>
+
+</article>

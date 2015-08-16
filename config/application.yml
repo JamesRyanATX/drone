@@ -1,0 +1,43 @@
+defaults: &defaults
+
+  # Number of targets to pop off the pending queue per batch
+  cycle_count: 1
+
+  # Minimum amount of time between captures (in seconds)
+  min_capture_interval: 3600
+
+  # Run PhantomJS in debug mode?
+  phantomjs_debug_mode: false
+
+  # Ignore invalid SSL certificates
+  phantomjs_ignore_ssl_errors: true
+
+  # Recipes that should be executed on an ongoing basis for
+  # each Target URL in the DB.
+  #
+  # Important: 'thumbnail' is a mandatory recipe; you can modify the definition,
+  # but it should not be removed.
+  recipes:
+    thumbnail:
+      format: png
+      output_height: 256
+      output_width: 256
+      viewport_height: 1100,
+      viewport_width: 650,
+
+  # Number of threads that generate screen captures (or blank for no multithreading)
+  thread_count: 
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+  imagemagick_identify_path: /usr/bin/identify
+  imagemagick_convert_path: /usr/bin/convert
+
+production:
+  <<: *defaults

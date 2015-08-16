@@ -1,0 +1,19 @@
+defaults: &shared
+  timeout: 0.5
+  port: 6379
+  host: localhost
+
+development:
+  <<: *shared
+  db: 0
+
+test:
+  <<: *shared
+  db: 1
+
+staging:
+  <<: *shared
+
+production:
+  <<: *shared
+  host: dasheroo-prod-redis.hllg5v.0001.usw2.cache.amazonaws.com

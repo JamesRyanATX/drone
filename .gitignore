@@ -1,0 +1,10 @@
+bin/convert
+bin/identify
+bin/phantomjs
+bin/phantomjs-osx
+bin/phantomjs-ubuntu-14.04-64
+Procfile.local
+captures
+dump.rdb
+tmp
+log

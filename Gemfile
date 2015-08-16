@@ -1,0 +1,13 @@
+source 'https://rubygems.org'
+
+gem 'grape'
+gem 'redis'
+gem 'terminal-table'
+gem 'foreman'
+gem 'thin'
+gem 'thor'
+gem 'awesome_print'
+gem 'ripl'
+gem 'colorize'
+gem 'rspec'
+gem 'rack-test'

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Media Test</title>
+    <style type="text/css">
+      @media print {
+        body {
+          margin: 2cm;
+        }
+
+        h1 {
+          background-color: red;
+          margin: 100px;
+          padding: 100px;
+        }
+
+        h2 {
+          page-break-before: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Print Media Testz
+    </h1>
+    <p>
+      Test.
+    </p>
+
+    <h2>
+      New Page
+    </h2>
+    <p>
+      Test.
+    </p>
+
+    <h2>
+      New Page
+    </h2>
+    <p>
+      Test.
+    </p>
+
+    <h2>
+      New Page
+    </h2>
+    <p>
+      Test.
+    </p>
+  </body>
+</html>

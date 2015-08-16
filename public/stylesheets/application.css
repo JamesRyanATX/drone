@@ -1,0 +1,563 @@
+/* global */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Muli;
+  font-size: 14pt;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* links */
+
+a, a:link {
+  color: rgb(250, 96, 66);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* forms */
+
+form.add-target {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+form.add-target input {
+  border-radius: 3px 0 0 3px;
+  border-right: 0px solid transparent;
+  flex: 1;
+}
+
+form.add-target button {
+  border-radius: 0 3px 3px 0;
+}
+
+fieldset {
+  border: 2px solid #eee;
+  margin-bottom: 25px;
+}
+
+fieldset legend {
+  color: rgb(250, 96, 66);
+  font-size: 10pt;
+  font-weight: bold;
+  padding: 0 15px;
+  text-transform: uppercase;
+}
+
+fieldset ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 15px;
+}
+
+fieldset li {
+  font-size: 12pt;
+  margin: 10px 0;
+}
+
+fieldset li em {
+  color: #aaa;
+  font-style: normal;
+  font-size: 10pt;
+}
+
+fieldset li span {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+fieldset label {
+  padding: 0.75rem 0;
+  display: block;
+  font-weight: bold;
+}
+
+fieldset .row {
+  display: flex;
+}
+
+fieldset .row > span {
+  display: block;
+  flex: 1;
+}
+
+select {
+  -webkit-appearance: none;
+  width: 250px;
+}
+
+  i.icon-select {
+    position: relative;
+    margin-left: -30px;
+  }
+
+  select::before { 
+    content: " - Remember this";
+  }
+
+button {
+  background-color: rgb(250, 96, 66);
+  border: 0;
+  padding: 1rem 2rem;
+  font-family: Muli;
+  font-size: 14pt;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 15px;
+  border-radius: 3px;
+  outline: none;
+}
+
+button[type="reset"] {
+  background-color: #f5f5f5;
+  color: #777;
+  font-weight: 100;
+}
+
+button[type="submit"] .idle {
+  display: inline;
+  font-weight: 900;
+}
+
+button[type="submit"] .idle i {
+}
+
+button[type="submit"] .working {
+  display: none;
+}
+
+button[type="submit"]:hover {
+  background-color: rgba(250, 96, 66, 0.9);
+}
+
+button[type="submit"]:active {
+  background-color: rgba(250, 96, 66, 0.8);
+}
+
+button[type="submit"].button-working,
+button[type="submit"].button-working:hover {
+  background-color: rgba(250, 96, 66, 0.5);        
+}
+
+button[type="submit"].button-working .idle {
+  display: none;
+}
+
+button[type="submit"].button-working .working {
+  display: inline;
+}
+
+select,
+input[type="text"],
+input[type="number"],
+input[type="url"] {
+  border: 2px solid #eee;
+  border-radius: 3px;
+  padding: 0.75rem;
+  font-size: 14pt;
+  outline: none;
+}
+
+select:active, select:focus,
+input[type="text"]:active,   input[type="text"]:focus,
+input[type="number"]:active, input[type="number"]:focus,
+input[type="url"]:active,    input[type="url"]:focus {
+  border-color: rgb(250, 96, 66);
+}
+
+
+input[type="number"] {
+  margin: 0 15px;
+  width: 100px;
+}
+
+input[type="text"],
+input[type="url"] {
+  width: 100%;
+}
+
+
+/* tables */
+
+th, td {
+  overflow: hidden;
+  padding: 10px 10px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+th {
+}
+
+td:nth-child(odd) {
+  font-weight: bold;
+  width: 33%;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;    
+  width: 100%;
+  table-layout: fixed;
+}
+
+
+/* header */
+
+header {
+  background-color: rgb(250, 96, 66);
+  background-color: #000;
+  font-family: Syncopate;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  height: 140px;
+}
+
+header .content,
+header .backsplash {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+header h1,
+header h2 {
+  text-transform: uppercase;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 30px;
+  letter-spacing: 8px;
+  margin: 18px 0 7px 30px;
+}
+
+header h2 {
+  font-size: 10px;
+  margin-left: 30px;
+  letter-spacing: 4px;
+}
+
+header ul {
+  list-style: none;
+  float: right;
+  margin: 0;
+  padding: 16px;
+}
+
+header li {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 32px 0 32px 0;
+  display: block;
+  float: right;
+  font-size: 12px;
+  margin-left: 16px;
+  min-width: 120px;
+  padding: 25px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+header li strong {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+header .backsplash i {
+  color: rgba(255, 255, 255, 0.25);
+  float: left;
+  font-size: 460px;
+  padding: 14px 25px;
+  position: absolute;
+  z-index: 0;
+  top: -246px;
+  left: -35px;
+}
+
+header nav {
+  margin: 25px;
+}
+
+header nav a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 7px 15px 5px 15px;
+  border-radius: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+header nav a.selected {
+  background-color: rgb(250, 96, 66);
+  color: white;
+}
+
+
+/* footer */
+
+footer {
+  text-align: center;
+  border-top: 2px solid #eee;
+  margin: 25px;
+  padding: 25px;
+  font-size: 14px;
+}
+
+
+/* target tiles */
+
+ul.targets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.targets li {
+  display: inline-block;
+}
+
+ul.targets a {
+  border-radius: 3px;
+  border: 3px solid #f5f5f5;
+  display: block;
+  margin: 0px 20px 20px 0;
+  min-height: 200px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+ul.targets a:hover {
+  border-color: rgb(250, 96, 66);
+}
+
+ul.targets img {
+  width: 200px;
+}
+
+.target-thumbnail {
+  margin-bottom: 10px;
+  height: 130px;
+  position: relative;
+}
+
+.target-thumbnail .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 130px;
+  width: 200px;
+  text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.target-thumbnail .layer i {
+  font-size: 72px;
+  padding-top: 25px;
+}
+
+.target-info {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center;
+}
+
+.target-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 180px;
+  font-size: 11px;
+}
+
+
+/* general layout */
+
+section.content {
+  position: relative;
+}
+
+article h3 {
+  background-color: #f5f5f5;
+  font-family: Syncopate;
+  text-transform: uppercase;
+  font-size: 20px;
+  padding: 32px;
+  border-bottom: 3px solid #e0e0e0;
+
+  margin: 0 0 32px 0;
+}
+
+article h3 .aside {
+  float: right;
+  font-size: 14px;
+  padding-top: 4px;
+  color: #777;
+}
+
+article section {
+  margin: 32px;
+}
+
+
+/* endpoint documentation */
+
+.endpoint {
+  padding: 0;
+}
+
+.endpoint p {
+  margin-bottom: 35px;
+}
+
+.endpoint h4 {
+  font-family: courier, fixed;
+}
+
+.endpoint h5 {
+  text-transform: uppercase;
+  color: rgb(250, 96, 66);
+}
+
+.endpoint ul li code {
+  display: inline-block;
+  word-wrap: break-word;
+  width: 250px;
+}
+
+.example {
+  margin-bottom: 35px;
+}
+
+.example .request,
+.example .response {
+  background-color: rgba(250, 96, 66, 0.05);
+  border-left: 5px solid rgb(250, 96, 66);
+  padding: 10px 020px;
+  margin-bottom: 20px;
+}
+
+.example .request strong,
+.example .response strong {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  color: rgba(250, 96, 66, 0.5);
+}
+
+.endpoint .request code,
+.endpoint .response code {
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+
+/* console */
+
+#capture {
+  position: relative;
+}
+
+.console .console-form-actions {
+  display: flex;
+}
+
+.console .console-form-actions button {
+  display: block;
+  flex: 1;
+  text-align: center;
+}
+
+.console .console-form-actions button:first-child {
+  margin: 0 10px 0 0;
+}
+
+.console .console-form-actions button:last-child {
+  margin: 0 0 0 10px;
+}
+
+.console .console-form-actions button i {
+  margin-right: 10px;
+  padding: 0;
+}
+
+.console {
+  display: flex;
+}
+
+.console .console-panel-parameters {
+  flex: 0.4;
+}
+
+.console .console-panel-output {
+  border-left: 1px solid #e0e0e0;
+  background-color: #f5f5f5;
+  flex: 0.6;
+}
+
+.console .capture-output-working {
+  text-align: center;
+  padding-top: 15%;
+  position: relative;
+}
+
+.console .capture-output-working i {
+  color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 75px;
+  left: 50%;
+  font-size: 200px;
+  margin-left: -100px;
+}
+
+.console .capture-output {
+  margin: 0 0 25px 0;
+}
+
+.console .capture-output-asset {
+  margin-bottom: 25px;
+}
+
+  .console .capture-output-asset iframe {
+    width: 100%;
+    height: 750px;
+  }
+
+  .console .capture-output-asset img {
+    width: 100%;
+  }
+
+.console nav {
+  text-align: right;
+  margin-bottom: 25px;
+}
+
+  .console nav button {
+    margin: 0 0 0 8px;
+  }
+
+  .console nav i {
+    margin-right: 8px;
+  }

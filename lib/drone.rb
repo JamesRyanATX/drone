@@ -31,8 +31,11 @@ module Drone
     self.config[:environment]
   end
 
+  # Base configuration and default values
   def self.config
-    @config ||= HashWithIndifferentAccess.new
+    @config ||= {
+      params: {}
+    }.with_indifferent_access
   end
 
   def self.logger

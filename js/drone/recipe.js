@@ -63,7 +63,8 @@ module.exports = (function () {
 
         this.page.open(this.capture.options.url, function (status) {
           if (status !== 'success') {
-            log('error', '=> recipe#execute load callback; status=' + status + ' time=' + (Date.now() - startTime) + 'ms');
+            log('error', '=> recipe#execute load failed; status=' + status + ' time=' + (Date.now() - startTime) + 'ms');
+            this.finish(false);
           }
         }.bind(this));
 

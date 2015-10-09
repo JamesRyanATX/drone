@@ -35,6 +35,14 @@ module Drone
     @config ||= HashWithIndifferentAccess.new
   end
 
+  def self.sync_credentials
+    self.config[:credentials].each do |id, attributes|
+      Drone::Credential.from_id(id, attributes.symbolize_keys).save
+    end
+
+    Drone::Credential.all
+  end
+
   def self.logger
     if @logger.nil?
       @logger = Logger.new(self.config[:log_device])
@@ -62,6 +70,7 @@ $LOAD_PATH << File.join(Drone::ROOT, 'lib')
 
 require './lib/drone/phantom'
 require './lib/drone/recipe'
+require './lib/drone/credential'
 require './lib/drone/target'
 require './lib/drone/console'
 require './lib/drone/erb'

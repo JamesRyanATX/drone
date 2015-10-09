@@ -58,6 +58,7 @@ module Drone
 
     def run
       execute_capture_script do |line|
+        line.gsub!(/\s*\Z/, '')
 
         # Identified as drone log statement
         if (drone_log = line.match(/^drone.(debug|error|success|info): (.*)$/))

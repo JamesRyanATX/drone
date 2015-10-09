@@ -166,8 +166,8 @@ module Drone::Concerns::Model
       self.new({ attribute => value }).load.update_attributes(attrs)
     end
 
-    def from_id(id)
-      from_attribute(:id, id)
+    def from_id(id, attrs = {})
+      from_attribute(:id, id, attrs)
     end
 
     def all

@@ -1,3 +1,5 @@
+require File.expand_path('../shared.rb', __FILE__)
+
 Drone.config.merge!({
   
   # Log overrides for test envs

@@ -52,6 +52,16 @@ class Drone::API < Grape::API
   get('/documentation.html') { :documentation }
   get('/console.html') { :console }
 
+  # GET /oauth/receive/:id
+  resource :oauth do
+    get 'receive/:id' do
+      credential = Drone::Credential.from_id(params[:id])
+      credential.authorize(params[:code])
+
+      redirect '/settings.html'
+    end
+  end
+
   # GET /status
   resource :status do
     get do

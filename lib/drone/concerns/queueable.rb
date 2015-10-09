@@ -29,7 +29,7 @@ module Drone::Concerns::Queueable
 
     def reset(options = {})
       options = {
-        queues: self.queueable_options[:queues]
+        queues: (self.queueable_options || {})[:queues] || []
       }.merge(options)
 
       options[:queues].each do |queue|

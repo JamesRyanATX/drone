@@ -38,10 +38,11 @@ class Drone::Recipe
 
     options = {
       crop: {
-        top:         params['crop_top'],
+        height:      params['crop_height'],
         left:        params['crop_left'],
+        selector:    params['crop_selector'],
+        top:         params['crop_top'],
         width:       params['crop_width'],
-        height:      params['crop_height']
       },
       inject: {
         css:         params['inject_css'],

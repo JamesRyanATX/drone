@@ -105,7 +105,8 @@ select {
     content: " - Remember this";
   }
 
-button {
+button,
+a.button {
   background-color: rgb(250, 96, 66);
   border: 0;
   padding: 1rem 2rem;

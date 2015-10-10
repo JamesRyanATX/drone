@@ -54,14 +54,21 @@
       <tbody>
         <% Drone::Credential.all.each do |credential| %>
           <tr>
-            <td><%= credential.id %></td>
+            <td>
+              <%= credential.id %>
+              <% if credential.authorized? %>
+                (authorized)
+              <% else %>
+                (unauthorized)
+              <% end %>
+            </td>
             <td>
               <% credential.as_json.each do |attribute, value| %>
                 :<%= attribute %> => <%= value %><br>
               <% end %>
-              <p>
-                <a href="<%= credential.authorize_uri %>">Authorize</a>
-              </p>
+              <br>
+              <br>
+              <a href="<%= credential.authorize_uri %>" class="button">Connect</a>
             </td>
           </tr>
         <% end %>

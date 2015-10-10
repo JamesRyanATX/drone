@@ -1,6 +1,8 @@
 require 'drone/concerns/collection'
 require 'drone/concerns/model'
 
+require 'oauth2'
+
 class Drone::Credentials
   include Drone::Concerns::Collection
 end

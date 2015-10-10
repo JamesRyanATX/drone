@@ -1,6 +1,10 @@
 require "grape"
 
-require 'drone/concerns/loggable'
+require "drone/concerns/loggable"
+
+if !Drone.config[:loaded]
+  raise "Drone config not loaded"
+end
 
 class Drone::API < Grape::API
   include Drone::Concerns::Loggable
@@ -22,7 +26,17 @@ class Drone::API < Grape::API
 
   default_format :json
 
+  prefix Drone.config[:prefix]
+
   helpers do
+
+    def app_url(path)
+      if Drone.config[:prefix]
+        "/#{Drone.config[:prefix]}#{path}"
+      else
+        path
+      end
+    end
 
     def target_from_params
       params[:id] ? target_from_id(params[:id]) : target_from_url(params[:url])
@@ -47,7 +61,7 @@ class Drone::API < Grape::API
   end
 
   # Root redirect and various HTML pages
-  get('/') { redirect '/targets.html' }
+  get('/') { redirect app_url('/targets.html') }
   get('/settings.html') { :settings }
   get('/documentation.html') { :documentation }
   get('/console.html') { :console }
@@ -58,7 +72,7 @@ class Drone::API < Grape::API
       credential = Drone::Credential.from_id(params[:id])
       credential.authorize(params[:code])
 
-      redirect '/settings.html'
+      redirect app_url('/settings.html')
     end
   end
 

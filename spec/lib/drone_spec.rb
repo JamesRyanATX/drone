@@ -33,6 +33,7 @@ describe Drone do
 
   describe '.sync_credentials' do
     it "loads credentials into redis" do
+      Drone::Credential.reset
       Drone.sync_credentials
       expect(Drone::Credential.count).to eq(1)
     end

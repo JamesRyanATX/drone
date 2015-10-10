@@ -28,6 +28,9 @@ defaults: &defaults
   # Number of threads that generate screen captures (or blank for no multithreading)
   thread_count: 
 
+  # Prefix under which to serve Drone's web interface
+  prefix:
+
 development:
   <<: *defaults
   credentials:
@@ -52,6 +55,7 @@ prodlike: &prodlike
   <<: *defaults
   imagemagick_identify_path: /usr/bin/identify
   imagemagick_convert_path: /usr/bin/convert
+  prefix: 'services/drone'
 
 integrations:
   <<: *prodlike

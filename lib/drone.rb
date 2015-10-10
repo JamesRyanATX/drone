@@ -6,6 +6,7 @@ require 'redis'
 require 'digest'
 require 'fileutils'
 require 'logger'
+require 'active_support/core_ext/hash/indifferent_access'
 
 module Drone
   class DroneError < StandardError; end
@@ -33,7 +34,11 @@ module Drone
   end
 
   def self.config
-    @config ||= HashWithIndifferentAccess.new
+    @config ||= {
+      credentials: {},
+      loaded: false,
+      params: {}
+    }.with_indifferent_access
   end
 
   def self.sync_credentials
@@ -77,8 +82,4 @@ require './lib/drone/console'
 require './lib/drone/erb'
 require './lib/drone/capture'
 require './lib/drone/status'
-
 require './lib/drone/formatters'
-require './lib/drone/cli'
-require './lib/drone/api'
-

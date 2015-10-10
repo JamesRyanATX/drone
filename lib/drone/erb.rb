@@ -22,6 +22,14 @@ module Drone::Erb
       'erb/layout/footer.html.erb'
     end
 
+    def app_url(path)
+      if Drone.config[:prefix]
+        "/#{Drone.config[:prefix]}#{path}"
+      else
+        path
+      end
+    end
+
     private
 
     def render_file(file)

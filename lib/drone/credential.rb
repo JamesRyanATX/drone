@@ -56,7 +56,12 @@ class Drone::Credential
   end
 
   def refresh
-    set_token(OAuth2::AccessToken.new(client, nil, { refresh_token: self.oauth_refresh_token }).refresh!)
+    begin
+      set_token(OAuth2::AccessToken.new(client, nil, { refresh_token: self.oauth_refresh_token }).refresh!)
+    rescue OAuth2::Error => e
+      raise Drone::CredentialInvalid, e.message
+    end
+
     self
   end
 
@@ -82,6 +87,25 @@ class Drone::Credential
 
   def expired?
     authorized? && Time.at(self.oauth_expires_at.to_i).gmtime <= Time.now.gmtime
+  end
+
+  def self.find_oauth_access_token(id, options = {})
+    options = {
+      refresh: true
+    }.merge(options)
+
+    credential = Drone::Credential.from_id(id)
+
+    if credential.nil?
+      raise Drone::CredentialInvalid, "Missing OAuth credential for '#{id}'."
+    end
+
+    if !credential.authorized?
+      raise Drone::CredentialInvalid, "OAuth credential '#{id}' not authorized; no access token present."
+    end
+
+    credential.refresh if credential.expired?
+    credential.oauth_access_token
   end
 
 end

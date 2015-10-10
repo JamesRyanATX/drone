@@ -13,6 +13,7 @@ module Drone
   class RecordNotFound < DroneError; end
   class RecipeNotFound < DroneError; end
   class ConfigurationInvalid < DroneError; end
+  class CredentialInvalid < DroneError; end
 
   module Concerns; end
 

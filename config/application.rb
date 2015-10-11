@@ -3,6 +3,7 @@ $stdout.sync = true
 $stderr.sync = true
 
 require 'yaml'
+require 'fileutils'
 require File.expand_path('../../lib/drone.rb', __FILE__)
 
 Drone.config[:environment] = ENV['RAILS_ENV'] || ENV['DRONE_ENV'] || 'development'
@@ -41,6 +42,21 @@ Drone.config.merge!({
 
 })
 
+# Pull in environment-specific config
 environment = File.join(Drone::ROOT, "config/environments/#{Drone.env}.rb")
-
 require environment if File.exists?(environment)
+
+# Check and create capture path
+if !Dir.exist?(Drone.config[:capture_path])
+  FileUtils.mkdir_p Drone.config[:capture_path]
+end
+
+# Mark config as loaded
+Drone.config[:loaded] = true
+
+# Load the API and CLI now that the config is set
+require 'drone/api'
+require 'drone/cli'
+
+# Synchronize credentials with redis
+Drone.sync_credentials

@@ -85,6 +85,16 @@ class Drone::CLI < Thor
     Ripl.start :binding => binding
   end
 
+  desc 'credentials', 'View authentication credentials'
+  def credentials
+    Drone.sync_credentials.each do |credential|
+      ap credential.as_json.merge({
+        :'authorized?' => credential.authorized?,
+        :'expired?' => credential.expired?
+      })
+    end
+  end
+
   desc 'install', 'Prepare Drone and PhantomJS installation'
   def install
     phantomjs_flavor = `uname -s`.strip == 'Darwin' ? 'osx' : 'ubuntu-14.04-64'
@@ -141,6 +151,7 @@ class Drone::CLI < Thor
   desc 'reset', 'Empty target database'
   def reset
     Drone::Target.reset({ queues: %w( pending completed processing error ) })
+    Drone::Credential.reset
   end
 
   desc 'work', 'Run background capturing service'

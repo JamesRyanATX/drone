@@ -28,16 +28,58 @@ defaults: &defaults
   # Number of threads that generate screen captures (or blank for no multithreading)
   thread_count: 
 
+  # Prefix under which to serve Drone's web interface
+  prefix:
+
 development:
   <<: *defaults
+  credentials:
+    dasheroo:
+      scheme: oauth2
+      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
+      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_host: http://localhost:7000/
+      oauth_redirect_uri: http://localhost:9000/oauth/receive/dasheroo
 
 test:
   <<: *defaults
+  credentials:
+    dasheroo:
+      scheme: oauth2
+      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
+      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_host: http://localhost:7000/
+      oauth_redirect_uri: http://localhost:9000/oauth/receive/dasheroo
 
-staging:
+prodlike: &prodlike
   <<: *defaults
   imagemagick_identify_path: /usr/bin/identify
   imagemagick_convert_path: /usr/bin/convert
+  prefix: 'services/drone'
+
+integrations:
+  <<: *prodlike
+  credentials:
+    dasheroo:
+      scheme: oauth2
+      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
+      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_host: http://localhost:7000/
+
+staging:
+  <<: *prodlike
+  credentials:
+    dasheroo:
+      scheme: oauth2
+      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
+      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_host: http://localhost:7000/
 
 production:
-  <<: *defaults
+  <<: *prodlike
+  credentials:
+    dasheroo:
+      scheme: oauth2
+      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
+      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_host: http://localhost:7000/

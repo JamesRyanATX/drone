@@ -47,7 +47,37 @@
   </section>
 
   <h3>
-    Url Replacement Variables
+    Credentials
+  </h3>
+  <section>
+    <table>
+      <tbody>
+        <% Drone::Credential.all.each do |credential| %>
+          <tr>
+            <td>
+              <%= credential.id %>
+              <% if credential.authorized? %>
+                (authorized)
+              <% else %>
+                (unauthorized)
+              <% end %>
+            </td>
+            <td>
+              <% credential.as_json.each do |attribute, value| %>
+                :<%= attribute %> => <%= value %><br>
+              <% end %>
+              <br>
+              <br>
+              <a href="<%= credential.authorize_uri %>" class="button">Connect</a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <h3>
+    Params
   </h3>
   <section>
     <table>

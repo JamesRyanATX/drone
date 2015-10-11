@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Muli" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syncopate" type="text/css">
 
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
-    <link rel="stylesheet" href="/stylesheets/application.css">
+    <link rel="icon" type="image/png" href="<%= app_url('/images/favicon.png') %>" />
+    <link rel="stylesheet" href="<%= app_url('/stylesheets/application.css') %>">
   </head>
   <body>
     <header>
@@ -44,10 +44,10 @@
         <h1>Drone</h1>
         <h2>Web Capture &amp; Export API</h2>
         <nav>
-          <a href="/targets.html" class="<%= @page.nil? ? 'selected' : '' %>">Targets</a>
-          <a href="/console.html" class="<%= @page.eql?(:console) ? 'selected' : '' %>">Console</a>
-          <a href="/documentation.html" class="<%= @page.eql?(:documentation) ? 'selected' : '' %>">API Docs</a>
-          <a href="/settings.html" class="<%= @page.eql?(:settings) ? 'selected' : '' %>">Settings</a>
+          <a href="<%= app_url('/targets.html') %>" class="<%= @page.nil? ? 'selected' : '' %>">Targets</a>
+          <a href="<%= app_url('/console.html') %>" class="<%= @page.eql?(:console) ? 'selected' : '' %>">Console</a>
+          <a href="<%= app_url('/documentation.html') %>" class="<%= @page.eql?(:documentation) ? 'selected' : '' %>">API Docs</a>
+          <a href="<%= app_url('/settings.html') %>" class="<%= @page.eql?(:settings) ? 'selected' : '' %>">Settings</a>
         </nav>
       </div>
     </header>

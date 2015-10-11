@@ -31,6 +31,14 @@ describe Drone do
     end
   end
 
+  describe '.sync_credentials' do
+    it "loads credentials into redis" do
+      Drone::Credential.reset
+      Drone.sync_credentials
+      expect(Drone::Credential.count).to eq(1)
+    end
+  end
+
   describe '.redis' do
     it "is a valid redis connection" do
       expect(Drone.redis).to be_kind_of(Redis)

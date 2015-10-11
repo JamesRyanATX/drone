@@ -6,6 +6,7 @@ require 'redis'
 require 'digest'
 require 'fileutils'
 require 'logger'
+require 'active_support/core_ext/hash/indifferent_access'
 
 module Drone
   class DroneError < StandardError; end
@@ -13,6 +14,7 @@ module Drone
   class RecordNotFound < DroneError; end
   class RecipeNotFound < DroneError; end
   class ConfigurationInvalid < DroneError; end
+  class CredentialInvalid < DroneError; end
 
   module Concerns; end
 
@@ -34,8 +36,18 @@ module Drone
   # Base configuration and default values
   def self.config
     @config ||= {
+      credentials: {},
+      loaded: false,
       params: {}
     }.with_indifferent_access
+  end
+
+  def self.sync_credentials
+    self.config[:credentials].each do |id, attributes|
+      Drone::Credential.from_id(id, attributes.symbolize_keys).save
+    end
+
+    Drone::Credential.all
   end
 
   def self.logger
@@ -65,13 +77,10 @@ $LOAD_PATH << File.join(Drone::ROOT, 'lib')
 
 require './lib/drone/phantom'
 require './lib/drone/recipe'
+require './lib/drone/credential'
 require './lib/drone/target'
 require './lib/drone/console'
 require './lib/drone/erb'
 require './lib/drone/capture'
 require './lib/drone/status'
-
 require './lib/drone/formatters'
-require './lib/drone/cli'
-require './lib/drone/api'
-

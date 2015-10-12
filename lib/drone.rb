@@ -36,6 +36,9 @@ module Drone
   # Base configuration and default values
   def self.config
     @config ||= {
+      phantomjs_path: File.join(Drone::ROOT, 'bin', 'phantomjs'),
+      imagemagick_convert_path: File.join(Drone::ROOT, 'bin', 'convert'),
+      imagemagick_identify_path: File.join(Drone::ROOT, 'bin', 'identify'),
       credentials: {},
       loaded: false,
       params: {}

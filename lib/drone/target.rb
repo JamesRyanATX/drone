@@ -93,7 +93,11 @@ class Drone::Target
     expanded_url = self.url.clone
 
     Drone.config[:params].each do |name, value|
-      expanded_url.gsub!("${#{name}}", value.is_a?(Proc) ? value.call(self) : value)
+      inline_ref = "${#{name}}"
+
+      if expanded_url.match(inline_ref)
+        expanded_url.gsub!(inline_ref, value.is_a?(Proc) ? value.call(self) : value)
+      end
     end
 
     expanded_url

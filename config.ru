@@ -18,6 +18,22 @@ static_assets = [
   memo
 end
 
+# Uncomment the following to log details about the request pipeline
+#class InspectMiddleware
+#  require "yaml"
+#
+#  def initialize(app)
+#    @app = app
+#  end
+#
+#  def call(env)
+#    puts "Request: " + env['REQUEST_URI']
+#    @app.call(env)
+#  end
+#end
+#
+#use InspectMiddleware
+
 # Set up static asset server (may or may not apply in production)
 use Rack::Static, urls: static_assets
 

@@ -20,16 +20,9 @@ Drone.config.merge!({
   # Path to capturejs script (internal)
   capturejs_path: File.join(Drone::ROOT, 'js/capture.js'),
 
-  # ImageMagick paths
-  imagemagick_convert_path: File.join(Drone::ROOT, 'bin', 'convert'),
-  imagemagick_identify_path: File.join(Drone::ROOT, 'bin', 'identify'),
-
   # Log level for drone-run process
   log_level: Logger::DEBUG,
   log_device: File.join(Drone::ROOT, 'log', "#{Drone.env}.log"),
-
-  # Path to PhantomJS (included in this app by default)
-  phantomjs_path: File.join(Drone::ROOT, 'bin', 'phantomjs'),
 
   # Prefix used for all keys stores in redis
   redis_key_prefix: "drone-#{Drone.env}-",

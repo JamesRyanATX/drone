@@ -64,8 +64,8 @@ integrations:
   credentials:
     dasheroo:
       scheme: oauth2
-      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
-      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_client_id: 5f181d7e893e25726e15465c81269123470319112b80dd0b97cd6c7030d376ea
+      oauth_client_secret: 340739832219190f420f79d7d6e3afdd699da9e6e31f8079985a004bd0d85d40
       oauth_host: https://integrations-staging.dasheroo.com/
       oauth_redirect_uri: https://integrations-staging.dasheroo.com/services/drone/oauth/receive/dasheroo
 
@@ -74,8 +74,8 @@ staging:
   credentials:
     dasheroo:
       scheme: oauth2
-      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
-      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_client_id: 9c9566936404e25c614b5e43996d4ee6139cc510119cd35af5aa0ff66858916b
+      oauth_client_secret: 297f20260525a013eac4ecbbb1ad1c68ef3ba262a5597e28182c585135fdd4d9
       oauth_host: https://staging.dasheroo.com/
       oauth_redirect_uri: https://staging.dasheroo.com/services/drone/oauth/receive/dasheroo
 
@@ -84,7 +84,7 @@ production:
   credentials:
     dasheroo:
       scheme: oauth2
-      oauth_client_id: b3bf79611b812e9f95a486ab272ac8858335bbfd91500bee273e0953e4f191df
-      oauth_client_secret: 7a1010c9fdfe00ce668d44e9348d2c949b0e5dbf83518d89296417fac043c829
+      oauth_client_id: 808d7f27a661b5fc888396ea859b6974eaa7fdfb2157cc81dace865fb5d1352e
+      oauth_client_secret: 0fdcca547ef9eb282b6c962713beafb5c97e421aecdf94af7a3e1df0427c5c0e
       oauth_host: https://www.dasheroo.com/
       oauth_redirect_uri: https://www.dasheroo.com/services/drone/oauth/receive/dasheroo

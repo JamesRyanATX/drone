@@ -33,7 +33,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  prefix: 'services/drone'
+  prefix: services/drone
   credentials:
     dasheroo:
       scheme: oauth2
@@ -57,6 +57,7 @@ prodlike: &prodlike
   phantomjs_path: /usr/bin/phantomjs
   imagemagick_identify_path: /usr/bin/identify
   imagemagick_convert_path: /usr/bin/convert
+  prefix: services/drone
 
 integrations:
   <<: *prodlike

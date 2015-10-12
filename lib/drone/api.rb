@@ -108,7 +108,7 @@ class Drone::API < Grape::API
           recipe: {
             name: result[:recipe_name]
           },
-          url: "/targets/#{target.id}.#{request_params[:output_format]}?recipe=#{result[:recipe_name]}",
+          url: app_url("/targets/#{target.id}.#{request_params[:output_format]}?recipe=#{result[:recipe_name]}"),
         }
       else
         result[:path]

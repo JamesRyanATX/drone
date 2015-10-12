@@ -220,7 +220,7 @@ window.capture = {};
 function submit() {
   var $ = window.$,
       $elms = window.capture.$elms,
-      url = '/capture.json?' + $elms.form.serialize(),
+      url = '<%= Drone.config[:prefix] ? "/#{Drone.config[:prefix]}" : "" %>/capture.json?' + $elms.form.serialize(),
       callbacks = {};
 
   $elms.submit.addClass('button-working');

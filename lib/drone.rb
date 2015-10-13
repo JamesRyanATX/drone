@@ -66,7 +66,11 @@ module Drone
   end
 
   def self.redis
-    @redis ||= Redis.new
+    @redis ||= Redis.new({
+      host: self.config[:redis][:host],
+      port: self.config[:redis][:port],
+      db: self.config[:redis][:db]
+    })
   end
 
   # Construct a key for use in Redis.

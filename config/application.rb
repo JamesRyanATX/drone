@@ -8,7 +8,11 @@ require File.expand_path('../../lib/drone.rb', __FILE__)
 
 Drone.config[:environment] = ENV['RAILS_ENV'] || ENV['DRONE_ENV'] || 'development'
 
+# Pull in base app config
 Drone.config.merge!(YAML.load_file(File.join(Drone::ROOT, 'config', 'application.yml'))[Drone.env])
+
+# Pull in Redis config
+Drone.config[:redis] = YAML.load_file(File.join(Drone::ROOT, 'config', 'redis.yml'))[Drone.env]
 
 # Generally, these should not need to be modified but are declared
 # here for readability purposes.

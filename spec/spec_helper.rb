@@ -5,7 +5,6 @@ ENV['DRONE_ENV'] = 'test'
 
 require File.expand_path('../../config/application.rb', __FILE__)
 
-
 RSpec.configure do |config|
 
   config.before :each do

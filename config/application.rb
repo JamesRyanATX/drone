@@ -39,9 +39,12 @@ Drone.config.merge!({
 environment = File.join(Drone::ROOT, "config/environments/#{Drone.env}.rb")
 require environment if File.exists?(environment)
 
-# Check and create capture path
-if !Dir.exist?(Drone.config[:capture_path])
-  FileUtils.mkdir_p Drone.config[:capture_path]
+# Check directories that should exist
+[
+  Drone.config[:capture_path],
+  Drone.config[:tmp_path]
+].each do |path|
+  FileUtils.mkdir_p(path) unless Dir.exist?(path)
 end
 
 # Mark config as loaded

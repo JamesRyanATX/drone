@@ -1,5 +1,11 @@
 defaults: &defaults
 
+  # Protect web UI with basic auth
+  basic_auth:
+    enabled: true
+    username: dasheroo
+    password: pj56sfwp
+
   # Number of targets to pop off the pending queue per batch
   cycle_count: 1
 
@@ -31,8 +37,13 @@ defaults: &defaults
   # Prefix under which to serve Drone's web interface
   prefix:
 
-development:
+devlike: &devlike
   <<: *defaults
+  basic_auth:
+    enabled: false
+
+development:
+  <<: *devlike
   prefix: services/drone
   credentials:
     dasheroo:
@@ -43,7 +54,8 @@ development:
       oauth_redirect_uri: http://localhost:9000/services/drone/oauth/receive/dasheroo
 
 test:
-  <<: *defaults
+  <<: *devlike
+  prefix:
   credentials:
     dasheroo:
       scheme: oauth2

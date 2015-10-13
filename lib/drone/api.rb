@@ -28,6 +28,11 @@ class Drone::API < Grape::API
 
   prefix Drone.config[:prefix]
 
+  http_basic do |username, password|
+    username == Drone.config[:basic_auth][:username] &&
+    password == Drone.config[:basic_auth][:password]
+  end if Drone.config[:basic_auth][:enabled]
+
   helpers do
 
     def app_url(path)

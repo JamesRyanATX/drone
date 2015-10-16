@@ -92,7 +92,7 @@ module.exports = (function () {
     },
 
     startFailsafeTimer: function () {
-      this.timeouts.failsafe = window.setTimeout(this.failsafe.bind(this), this.options.failsafeTimeout);
+      this.timeouts.failsafe = window.setTimeout(this.failsafe.bind(this), this.options.max_capture_time * 1000);
     },
 
     startPollTimer: function () {
@@ -106,7 +106,7 @@ module.exports = (function () {
       }
       else {
         log('debug', '.. ready check #' + this.pollCount);
-        this.timeouts.poll = window.setTimeout(this.startPollTimer.bind(this), this.options.pollInterval);
+        this.timeouts.poll = window.setTimeout(this.startPollTimer.bind(this), (this.options.poll_capture_interval * 1000));
       }
     },
 
@@ -230,7 +230,7 @@ module.exports = (function () {
 
     // Called if timeout exceeded
     failsafe: function () {
-      this.finish(false, 'acceptable time window of ' + this.options.failsafeTimeout + 'ms exceeded');
+      this.finish(false, 'acceptable time window of ' + this.options.max_capture_time + 's exceeded');
     }
 
   };

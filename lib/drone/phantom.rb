@@ -21,6 +21,8 @@ module Drone
         url: target.capture_url.to_s,
         identify: Drone.config[:imagemagick_identify_path],
         convert: Drone.config[:imagemagick_convert_path],
+        max_capture_time: Drone.config[:max_capture_time],
+        poll_capture_interval: Drone.config[:poll_capture_interval],
         thread_id: nil
       }.merge(options)
 

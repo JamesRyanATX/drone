@@ -145,10 +145,14 @@ module.exports = (function () {
       this.applyFeatures('beforeRender', function () {
         this.inject.write(function () {
           log('debug', '-> rendering ' + this.recipe.output.format);
+          //log('debug', '   recipe.output.format: ' + this.recipe.output.format);
+          //log('debug', '   recipe.output.quality: ' + this.recipe.output.quality);
+          //log('debug', '   page.viewportSize: ' + JSON.stringify(this.page.viewportSize));
+          //log('debug', '   page.zoomFactor: ' + this.page.zoomFactor);
 
           if (this.page.render(this.filename(), {
             format: this.recipe.output.format,
-            quality: this.quality()
+            quality: this.recipe.output.quality
           })) {
             this.applyFeatures('afterRender', this.finish.bind(this));
           }

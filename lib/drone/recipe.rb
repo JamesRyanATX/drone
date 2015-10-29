@@ -53,6 +53,7 @@ class Drone::Recipe
       output: {
         format:      params['output_format'] || DEFAULT_FORMAT,
         height:      params['output_height'],
+        quality:     params['output_quality'],
         width:       params['output_width'],
       },
       paper: {

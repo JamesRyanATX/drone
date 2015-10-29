@@ -11,6 +11,7 @@ module.exports = {
       // Do not re-order
       'crop',
       'output_size',
+      'output_quality',
       'paper_size',
       'paper_orientation',
       'paper_header',
@@ -18,6 +19,7 @@ module.exports = {
       'viewport_size',
       'watermark',
       'zoom',
+      'retina',
       'inject_html',
       'inject_css',
       'inject_javascript'

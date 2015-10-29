@@ -21,7 +21,7 @@ module.exports = (function () {
 
     this.setPageProperty('paperSize', function (paperSize) {
       paperSize.footer = {
-        height: '2cm',
+        height: '1in',
         contents: phantom.callback(function(pageNum, numPages) {
           return this.inject.tagFactory('div', {
             css: baseStyle,

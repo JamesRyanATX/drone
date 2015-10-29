@@ -23,7 +23,7 @@ module.exports = (function () {
 
     this.setPageProperty('paperSize', function (paperSize) {
       paperSize.header = {
-        height: '3cm',
+        height: '1.5in',
         contents: phantom.callback(function(pageNum, numPages) {
           return this.inject.tagFactory('div', {
             css: baseStyle,

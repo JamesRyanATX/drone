@@ -7,7 +7,7 @@ module.exports = (function () {
   obj = function (options, callback) {
     this.callback = callback;
     this.options = obj.ns.Util.merge({
-      failsafeTimeout: 15000,
+      failsafeTimeout: 45000,
       height: 768,
       pollInterval: 1000,
       width: 1150

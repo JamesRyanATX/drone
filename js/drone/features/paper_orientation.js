@@ -2,15 +2,23 @@
 
 module.exports = (function () {
 
-  var obj = { name: 'paper_orientation' };
+  var obj = { name: 'paper_orientation' },
+      dpiByOrientation = {
+        landscape: 107,
+        portrait: 142
+      };
 
   obj.isEnabled = function () {
     return (this.recipe.output.format == 'pdf' && this.recipe.paper.orientation === 'landscape');
   };
 
   obj.enable = function (callback) {
+    var adjustedPageSize = obj.adjustedPaperSize.call(this);
+
     this.setPageProperty('paperSize', function (paperSize) {
-      paperSize.orientation = this.recipe.paper.orientation;
+      paperSize.orientation = adjustedPageSize.orientation;
+      paperSize.height = adjustedPageSize.height;
+      paperSize.width = adjustedPageSize.width;
 
       return paperSize;
     }.bind(this), {});
@@ -18,18 +26,35 @@ module.exports = (function () {
     callback();
   };
 
-  obj.disable = function (callback) {
-    this.setPageProperty('paperSize', function (paperSize) {
-      paperSize.orientation = 'portrait';
+  obj.disable = obj.enable;
 
-      return paperSize;
-    }.bind(this), {});
+  obj.orientation = function () {
+    return (obj.isEnabled.call(this)) ? this.recipe.paper.orientation : 'portrait';
+  };
 
-    callback();
+  obj.adjustedPaperSize = function () {
+    var paperSize = this.page.paperSize,
+        orientation = obj.orientation.call(this),
+        reverse = (orientation === 'landscape'),
+        height = (reverse) ? paperSize.width : paperSize.height,
+        width = (reverse) ? paperSize.height : paperSize.width,
+        dpi = dpiByOrientation[orientation];
+
+    return {
+      orientation: orientation,
+      width: obj.inchesToPixels.call(this, width, dpi),
+      height: obj.inchesToPixels.call(this, height, dpi),
+      margin: obj.inchesToPixels.call(this, paperSize.margin, dpi),
+      dpi: dpi
+    };
+  };
+
+  obj.inchesToPixels = function (value, dpi) {
+    return (Number((value || '').replace('in', '')) * dpi) + 'px';
   };
 
   obj.summary = function () {
-    return JSON.stringify({ orientation: this.recipe.paper.orientation });
+    return JSON.stringify(obj.adjustedPaperSize.call(this));
   };
 
   return {

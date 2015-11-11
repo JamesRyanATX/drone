@@ -3,7 +3,9 @@
 module.exports = (function () {
 
   var obj = { name: 'paper_footer' },
-      template = '<span style="float: right">Page ${pageNum} of ${numPages}</span><strong>${text}</strong>',
+      template = '<div style="font-family: muli, helvetica, arial, sans-serif">' +
+        '<span style="float: right">Page ${pageNum} of ${numPages}</span>' +
+        '<strong>${text}</strong>',
       baseStyle = {
         'border-top': '1px solid #555',
         'color': '#555',

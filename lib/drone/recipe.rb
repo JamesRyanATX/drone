@@ -9,7 +9,8 @@ class Drone::Recipe
   DEFAULT_PAPER_ORIENTATION = 'portrait'
   DEFAULT_PAPER_MARGIN = 2
 
-  DEFAULT_FORMAT = 'png'
+  DEFAULT_OUTPUT_FILENAME = 'capture'
+  DEFAULT_OUTPUT_FORMAT = 'png'
 
   DEFAULT_ZOOM = 1
 
@@ -51,7 +52,8 @@ class Drone::Recipe
       },
       name:          params['name'],
       output: {
-        format:      params['output_format'] || DEFAULT_FORMAT,
+        filename:    params['output_filename'] || DEFAULT_OUTPUT_FILENAME,
+        format:      params['output_format'] || DEFAULT_OUTPUT_FORMAT,
         height:      params['output_height'],
         quality:     params['output_quality'],
         width:       params['output_width'],

@@ -3,9 +3,11 @@
 module.exports = (function () {
 
   var obj = { name: 'paper_header' },
-      template = '<span style="float: right; font-size: 10pt">Page ${pageNum} of ${numPages}</span>' +
+      template = '<div style="font-family: muli, helvetica, arial, sans-serif">' +
+        '<span style="float: right; font-size: 10pt">Page ${pageNum} of ${numPages}</span>' +
         '<div style="font-size: 18pt; font-weight: bold; padding-bottom: 7px">${title}</div>' +
-        '<div style="padding-bottom: 10px">${subtitle}</div>',
+        '<div style="padding-bottom: 10px">${subtitle}</div>' +
+        '</div>',
       baseStyle = {
         'border-bottom': '1px solid #555',
         'color': '#555',

@@ -67,6 +67,7 @@ class Drone::Recipe
         header: {
           title:     params['paper_header_title'],
           subtitle:  params['paper_header_subtitle'],
+          logo:      params['paper_header_logo'],
           style:     params['paper_header_style']
         },
         footer: {

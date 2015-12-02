@@ -1,10 +1,9 @@
 /* global module, phantom */
 
 module.exports = (function () {
-
   var obj = { name: 'paper_header' },
-      template = '<div style="font-family: muli, helvetica, arial, sans-serif">' +
-        '<span style="float: right; font-size: 10pt">Page ${pageNum} of ${numPages}</span>' +
+      template = '<div class="header" style="font-family: muli, helvetica, arial, sans-serif">' +
+        '<img class="logo" style="float: right; height: 50px" src="${logo}"></img>' +
         '<div style="font-size: 18pt; font-weight: bold; padding-bottom: 7px">${title}</div>' +
         '<div style="padding-bottom: 10px">${subtitle}</div>' +
         '</div>',
@@ -22,6 +21,7 @@ module.exports = (function () {
 
   obj.enable = function (callback) {
     var header = this.recipe.paper.header;
+    var img = new Image();
 
     this.setPageProperty('paperSize', function (paperSize) {
       paperSize.header = {
@@ -35,6 +35,7 @@ module.exports = (function () {
               .replace('${numPages}', numPages)
               .replace('${title}', header.title)
               .replace('${subtitle}', header.subtitle)
+              .replace('${logo}', header.logo)
           });
         }.bind(this))
       };
@@ -42,7 +43,8 @@ module.exports = (function () {
       return paperSize;
     }.bind(this), {});
 
-    callback();
+    img.src = header.logo;
+    img.onload = function() { callback(); };
   };
 
   obj.disable = function (callback) {
@@ -56,6 +58,7 @@ module.exports = (function () {
     return JSON.stringify({
       title: header.title,
       subtitle: header.subtitle,
+      logo: header.logo,
       style: header.style
     });
   };

@@ -43,8 +43,13 @@ module.exports = (function () {
       return paperSize;
     }.bind(this), {});
 
-    img.src = header.logo;
-    img.onload = function() { callback(); };
+    if (header.logo && header.logo.length > 0){
+      img.src = header.logo;
+      img.onload = function() { callback(); };
+    }
+    else {
+      callback();
+    }
   };
 
   obj.disable = function (callback) {

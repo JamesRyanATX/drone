@@ -65,10 +65,11 @@ class Drone::Recipe
         orientation: params['paper_orientation'] || DEFAULT_PAPER_ORIENTATION,
         width:       params['paper_width'] || DEFAULT_PAPER_WIDTH,
         header: {
-          title:     params['paper_header_title'],
-          subtitle:  params['paper_header_subtitle'],
-          logo:      params['paper_header_logo'],
-          style:     params['paper_header_style']
+          title:      params['paper_header_title'],
+          subtitle:   params['paper_header_subtitle'],
+          dateRange:  params['paper_header_date_range'],
+          logo:       params['paper_header_logo'],
+          style:      params['paper_header_style']
         },
         footer: {
           text:      params['paper_footer_text'],

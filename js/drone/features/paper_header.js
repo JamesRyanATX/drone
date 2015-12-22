@@ -5,10 +5,11 @@ module.exports = (function () {
       template = '<div class="header" style="font-family: muli, helvetica, arial, sans-serif">' +
         '<img class="logo" style="float: right; height: 50px" src="${logo}"></img>' +
         '<div style="font-size: 18pt; font-weight: bold; padding-bottom: 7px">${title}</div>' +
-        '<div style="padding-bottom: 10px">${subtitle}</div>' +
+        '<div style="padding-bottom: 10px; font-style: italic; font-size: 12px;">${subtitle}</div>' +
+        '<div style="padding-bottom: 5px; font-size: 12px;">${dateRange}</div>' +
         '</div>',
       baseStyle = {
-        'border-bottom': '1px solid #555',
+        'border-bottom': '1px solid #ccc',
         'color': '#555',
         'font-family': 'arial',
         'font-size': '12pt',
@@ -36,6 +37,7 @@ module.exports = (function () {
               .replace('${title}', header.title)
               .replace('${subtitle}', header.subtitle)
               .replace('${logo}', header.logo)
+              .replace('${dateRange}', header.dateRange)
           });
         }.bind(this))
       };

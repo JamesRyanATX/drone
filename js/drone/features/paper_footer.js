@@ -7,7 +7,7 @@ module.exports = (function () {
         '<span style="float: right">Page ${pageNum} of ${numPages}</span>' +
         '<strong>${text}</strong>',
       baseStyle = {
-        'border-top': '1px solid #555',
+        'border-top': '1px solid #ccc',
         'color': '#555',
         'font-family': 'arial',
         'font-size': '10pt',

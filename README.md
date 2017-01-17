@@ -1,5 +1,7 @@
 # Drone
 
+*this project is no longer under active development*
+
 A web capture and export microservice built around the PhantomJS headless browser.
 
 <a href="doc/drone.targets.png"><img src="doc/drone.targets.png" width="150"></a>

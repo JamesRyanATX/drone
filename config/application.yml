@@ -1,0 +1,80 @@
+defaults: &defaults
+
+  # Prefix under which to serve Drone's web interface
+  web.prefix: <%= ENV['DRONE_PREFIX'] %>
+
+  # Protect web UI with basic auth
+  web.auth: true
+  web.auth.username: <%= ENV['DRONE_ADMIN_USERNAME'] || 'drone' %>
+  web.auth.password: <%= ENV['DRONE_ADMIN_PASSWORD'] || 'drone' %>
+
+  credentials:
+    default:
+      scheme: oauth2
+      oauth_client_id: <%= ENV['DRONE_OAUTH_CLIENT_ID'] %>
+      oauth_client_secret: <%= ENV['DRONE_OAUTH_CLIENT_SECRET'] %>
+      oauth_host: <%= ENV['DRONE_OAUTH_HOST'] %>
+      oauth_redirect_uri: <%= ENV['DRONE_OAUTH_REDIRECT_URI'] %>
+
+  redis.timeout: 0.5
+  redis.port: <%= ENV['DRONE_REDIS_PORT'] || 6379 %>
+  redis.host: <%= ENV['DRONE_REDIS_HOST'] || 'localhost' %>
+
+  # Paths to requisite executables
+  phantomjs_path: /drone/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs
+  imagemagick_identify_path: identify
+  imagemagick_convert_path: convert
+
+  # Number of targets to pop off the pending queue per batch
+  cycle_count: 1
+
+  # Minimum amount of time between captures (in seconds)
+  min_capture_interval: 3600
+
+  # Maximum time allowed for a single screen capture (in seconds)
+  max_capture_time: 15
+
+  # Time between checks that determine if a page is ready for screen capture (in seconds)
+  poll_capture_interval: 1
+
+  # Run PhantomJS in debug mode?
+  phantomjs_debug_mode: false
+
+  # Ignore invalid SSL certificates
+  phantomjs_ignore_ssl_errors: true
+
+  # Recipes that should be executed on an ongoing basis for
+  # each Target URL in the DB.
+  #
+  # Important: 'thumbnail' is a mandatory recipe; you can modify the definition,
+  # but it should not be removed.
+  recipes:
+    thumbnail:
+      format: png
+      output_height: 256
+      output_width: 256
+      viewport_height: 1100,
+      viewport_width: 650,
+
+  # Number of threads that generate screen captures (or blank for no multithreading)
+  thread_count: 
+
+devlike: &devlike
+  <<: *defaults
+  max_capture_time: 60
+
+prodlike: &prodlike
+  <<: *defaults
+
+development:
+  <<: *devlike
+
+test:
+  <<: *devlike
+  auth: false
+
+staging:
+  <<: *prodlike
+
+production:
+  <<: *prodlike

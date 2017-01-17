@@ -1,0 +1,165 @@
+<article>
+  <h3>
+    Realtime Endpoints
+  </h3>
+
+  <section>
+    <div class="endpoint">
+      <h4>
+        GET /capture?url=:url
+      </h4>
+
+      <p>
+        Generate a screen capture of a URL.
+      </p>
+
+      <h5>
+        Request Parameters
+      </h5>
+
+      <ul>
+        <li><strong><code>url</code></strong> &mdash; source URL (required)</li>
+        <li><code>crop_height</code> &mdash; crop box height</li>
+        <li><code>crop_left</code> &mdash; crop box X origin</li>
+        <li><code>crop_top</code> &mdash; crop box Y origin</li>
+        <li><code>crop_width</code> &mdash; crop box width</li>
+        <li><code>inject_css</code> &mdash; CSS to inject on page prior to capture</li>
+        <li><code>inject_html</code> &mdash; HTML to inject on page prior to capture</li>
+        <li><code>inject_javascript</code> &mdash; JavaScript to inject on page prior to capture</li>
+        <li><code>output_format</code> &mdash; output format; either "png" or "pdf"</li>
+        <li><code>output_height</code> &mdash; output image height in pixels</li>
+        <li><code>output_width</code> &mdash; output image width in pixels</li>
+        <li><code>paper_footer_style</code> &mdash; PDF footer CSS</li>
+        <li><code>paper_footer_text</code> &mdash; PDF footer text</li>
+        <li><code>paper_format</code> &mdash; PDF layout format; A3, A4, Letter, etc.</li>
+        <li><code>paper_header_style</code> &mdash; PDF header CSS</li>
+        <li><code>paper_header_title</code> &mdash; PDF header title text</li>
+        <li><code>paper_header_subtitle</code> &mdash; PDF header title subtext</li>
+        <li><code>paper_height</code> &mdash; PDF paper height in inches</li>
+        <li><code>paper_orientation</code> &mdash; PDF paper orientation; either "portrait" or "landscape"</li>
+        <li><code>paper_width</code> &mdash; PDF paper width in inches</li>
+        <li><code>ready</code> &mdash; how to determine when the page is ready for capture; either "success" or "drone"</li>
+        <li><code>viewport_width</code> &mdash; browser width in pixels</li>
+        <li><code>viewport_height</code> &mdash; browser height in pixels</li>
+        <li><code>watermark_style</code> &mdash; watermark CSS</li>
+        <li><code>watermark_text</code> &mdash; watermark text</li>
+        <li><code>zoom</code> &mdash; zoom factor; between 0 (0%) and 1 (100%)</li>
+      </ul>
+
+      <h5>
+        Examples
+      </h5>
+
+      <div class="example">
+        <p>
+          Generate a PNG of http://www.google.com:
+        </p>
+
+        <div class="request">
+          <strong>Request</strong>
+          <code>curl http://localhost:9000/capture?url=http://www.google.com&viewport_width=500&viewport_height=200&output_format=png&zoom=1</code>
+        </div>
+      </div>
+
+      <div class="example">
+        <p>
+          Generate a PDF of http://www.google.com:
+        </p>
+
+        <div class="request">
+          <strong>Request</strong>
+          <code>curl http://localhost:9000/capture?url=http://www.google.com&paper_width=5in&=500&paper_height=5in&output_format=pdf&zoom=1</code>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <h3>
+    Target Endpoints
+  </h3>
+
+  <section>
+
+    <div class="endpoint">
+      <h4>
+        GET /targets.json
+      </h4>
+
+      <p>
+        List active targets (URLs).
+      </p>
+    </div>
+
+    <div class="endpoint">
+      <h4>
+        POST /targets.json
+      </h4>
+
+      <p>
+        Create a new target.
+      </p>
+    </div>
+
+    <div class="endpoint">
+      <h4>
+        DELETE /targets.json
+      </h4>
+
+      <p>
+        Delete all targets.
+      </p>
+    </div>
+
+    <div class="endpoint">
+      <h4>
+        GET /targets/:target_id.json
+      </h4>
+
+      <p>
+        Retrieve a single target.
+      </p>
+    </div>
+
+    <div class="endpoint">
+      <h4>
+        PUT /targets/:target_id.json
+      </h4>
+
+      <p>
+        Update a single target.
+      </p>
+    </div>
+
+  </section>
+
+  <h3>
+    Other Endpoints
+  </h3>
+
+  <section>
+
+    <div class="endpoint">
+      <h4>
+        GET /status.json
+      </h4>
+
+      <p>
+        Retrieve status information.
+      </p>
+
+      <div class="example">
+        <div class="request">
+          <strong>Request</strong>
+          <code>curl http://localhost:9000/status.json</code>
+        </div>
+
+        <div class="response">
+          <strong>Response</strong>
+          <code>{ "targets": 1, "pending": 0, "processing": 0, "completed": 3, "error": 1 }</code>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</article>

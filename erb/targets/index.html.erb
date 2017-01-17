@@ -1,0 +1,81 @@
+<article>
+  <h3>
+    <span class="aside">Updated every <%= Drone.config[:min_capture_interval] / 60 %> minutes</span>
+    Target URLs (<%= records.length %>)
+  </h3>
+
+  <section>
+    <form class="add-target">
+      <input name="url" type="url" placeholder="Add a URL to monitor">
+      <button><i class="fa fa-plus"></i> &nbsp;Add</button>
+    </form>
+
+    &nbsp;
+
+    <ul class="targets">
+      <% records.each do |record| %>
+        <li>
+          <a href="<%= app_url("/targets/#{record.id}.html") %>">
+            <div class="target-thumbnail">
+              <div class="layer">
+                <i class="fa fa-bullseye"></i>
+              </div>
+              <div class="layer" style="background-image: url('<%= app_url("/targets/#{record.id}") %>.png?recipe=thumbnail')">
+              </div>
+            </div>
+            <div class="target-info">
+              <div class="target-name" title="<%= record.url %>">
+                <%= record.url %>
+              </div>
+            </div>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</article>
+
+<script type="text/javascript">
+window.capture = {};
+
+function submit() {
+  var $ = window.$,
+      $elms = window.capture.$elms,
+      url = '<%= app_url("/targets.json?") %>' + $elms.form.serialize(),
+      callbacks = {};
+
+  callbacks.always = function () {
+  }.bind(this);
+
+  callbacks.done = function (data, status, request) {
+    document.location.reload();
+  }.bind(this);
+
+  callbacks.fail = function (data, status, request) {
+    alert('Oops.');
+  }.bind(this);
+
+  $.ajax(url, { method: 'post' })
+    .always(callbacks.always)
+    .done(callbacks.done)
+    .fail(callbacks.fail);
+}
+
+window.deferred.push(function () {
+  var $ = window.$,
+      $elms = {
+        url: $('input[type="url"]'),
+        form: $('form')
+      };
+
+  window.capture.$elms = $elms;
+
+  $('form').on('submit', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    submit();
+  });
+});
+
+</script>

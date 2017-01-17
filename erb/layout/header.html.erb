@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drone</title>
+    <script type="text/javascript">
+    window.deferred = [];
+    </script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syncopate" type="text/css">
+
+    <link rel="icon" type="image/png" href="<%= app_url('/images/favicon.png') %>" />
+    <link rel="stylesheet" href="<%= app_url('/stylesheets/application.css') %>">
+  </head>
+  <body>
+    <header>
+      <div class="backsplash">
+        <i>&#x2708;</i>
+      </div>
+      <div class="content">
+        <ul>
+          <li>
+            <strong><%= @drone_status.error_count %></strong>
+            errors
+          </li>
+          <li>
+            <strong><%= @drone_status.capture_average.round(1) %></strong>
+            avg (s)
+          </li>
+          <li>
+            <strong><%= @drone_status.capture_rate.round(1) %></strong>
+            rate (c/s)
+          </li>
+          <li class="selected">
+            <strong><%= @drone_status.capture_count %></strong>
+            captures
+          </li>
+          <li class="selected">
+            <strong><%= @drone_status.target_count %></strong>
+            targets
+          </li>
+        </ul>
+        <h1>Drone</h1>
+        <h2>Web Capture &amp; Export API</h2>
+        <nav>
+          <a href="<%= app_url('/targets.html') %>" class="<%= @page.nil? ? 'selected' : '' %>">Targets</a>
+          <a href="<%= app_url('/console.html') %>" class="<%= @page.eql?(:console) ? 'selected' : '' %>">Console</a>
+          <a href="<%= app_url('/documentation.html') %>" class="<%= @page.eql?(:documentation) ? 'selected' : '' %>">API Docs</a>
+          <a href="<%= app_url('/settings.html') %>" class="<%= @page.eql?(:settings) ? 'selected' : '' %>">Settings</a>
+        </nav>
+      </div>
+    </header>
+    <section class="content">

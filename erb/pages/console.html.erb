@@ -1,0 +1,334 @@
+<form id="capture">
+  <article class="console">
+
+    <div class="console-panel console-panel-parameters">
+  
+      <h3>
+        <div class="aside">
+          <input type="checkbox"> advanced
+        </div>
+        Source
+      </h3>
+
+      <section>
+        <fieldset>
+          <legend>General</legend>
+          <ul>
+            <li>
+              <label>URL</label>
+              <input name="url" type="url" value="https://www.dasheroo.com/">
+            </li>
+            <li>
+              <label>Format</label>
+              <select name="output_format">
+                <option value="png">PNG</option>
+                <option value="pdf">PDF</option>
+              </select>
+              <i class="icon-select fa fa-caret-down"></i>
+            </li>
+          </ul>
+        </fieldset>
+
+        <div class="console-advanced" style="display: none;">
+          <fieldset class="fieldset-output fieldset-output-png" style="display: block">
+            <legend>Output</legend>
+            <ul>
+              <li>
+                <label>Dimensions</label>
+                <div class="row">
+                  <span>Width: <input name="output_width" type="number" placeholder="auto"><em>px</em></span>
+                  <span>Height: <input name="output_height" type="number" placeholder="auto"><em>px</em></span>
+                </div>
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="fieldset-output fieldset-output-pdf" style="display: none">
+            <legend>Output</legend>
+            <ul>
+              <li>
+                <label>Paper Orientation</label>
+                <select name="paper_orientation">
+                  <option value="portrait">Portrait</option>
+                  <option value="landscape">Landscape</option>
+                </select>
+                <i class="icon-select fa fa-caret-down"></i>
+              </li>
+              <li>
+                <label>Paper Size</label>
+                <select name="paper_format">
+                  <option value="Letter">Letter</option>
+                  <option value="A3">A3</option>
+                  <option value="A4">A4</option>
+                  <option value="A5">A5</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Tabloid">Tabloid</option>
+                </select>
+                <i class="icon-select fa fa-caret-down"></i>
+              </li>
+              <li>
+                <label>Margin</label>
+                Width<input name="paper_margin" type="number" placeholder="auto" value="1" min="0.0" max="2.0" step="0.01"><em>in</em></span>
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset>
+            <legend>Browser</legend>
+            <ul>
+              <li>
+                <label>Viewport Dimensions</label>
+                <div class="row">
+                  <span>Width: <input name="viewport_width" type="number" placeholder="0" value="1150"><em>px</em></span>
+                  <span>Height: <input name="viewport_height" type="number" placeholder="0" value="650"><em>px</em></span>
+                </div>
+              </li>
+              <li>
+                <label>Crop Origin</label>
+                <div class="row">
+                  <span>Top: <input name="crop_left" type="number" placeholder="&mdash;" value=""><em>px</em></span>
+                  <span>Left: <input name="crop_top" type="number" placeholder="&mdash;" value=""><em>px</em></span>
+                </div>
+              </li>
+              <li>
+                <label>Crop Dimensions</label>
+                <div class="row">
+                  <span>Width: <input name="crop_width" type="number" placeholder="&mdash;" value=""><em>px</em></span>
+                  <span>Height: <input name="crop_height" type="number" placeholder="&mdash;" value=""><em>px</em></span>
+                </div>
+              </li>
+              <li>
+                <label>Zoom</label>
+                <span>Multiplier: <input name="zoom" type="number" value="1" placeholder="1" min="0.0" max="1.0" step="0.01"><em>between 0 and 1</em></span>
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="fieldset-output fieldset-output-pdf fieldset-output-png" style="display: block">
+            <legend>Watermark</legend>
+            <ul>
+              <li>
+                <label>Text</label>
+                <input name="watermark_text" type="text" placeholder="Created by Drone">
+              </li>
+              <li>
+                <label>Style (CSS)</label>
+                <input name="watermark_style" type="text" placeholder="default">
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="fieldset-output fieldset-output-pdf" style="display: none">
+            <legend>Header &amp Footer</legend>
+            <ul>
+              <li>
+                <label>Header Title</label>
+                <input name="paper_header_title" type="text" value="I am title.">
+              </li>
+              <li>
+                <label>Header Subtitle</label>
+                <input name="paper_header_subtitle" type="text" value="I am subtitle.">
+              </li>
+              <li>
+                <label>Header Style (CSS)</label>
+                <input name="paper_header_style" type="text" placeholder="default">
+              </li>
+              <li>
+                <label>Footer Text</label>
+                <input name="paper_footer_text" type="text" value="I am footer.">
+              </li>
+              <li>
+                <label>Footer Style (CSS)</label>
+                <input name="paper_footer_style" type="text" placeholder="default">
+              </li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="fieldset-output fieldset-output-pdf fieldset-output-png" style="display: block">
+            <legend>Injections</legend>
+            <ul>
+              <li>
+                <label>HTML</label>
+                <input name="inject_html" type="text" value="">
+              </li>
+              <li>
+                <label>JavaScript</label>
+                <input name="inject_javascript" type="text" value="">
+              </li>
+              <li>
+                <label>CSS</label>
+                <input name="inject_css" type="text" value="">
+              </li>
+            </ul>
+          </fieldset>
+        </div>
+
+        <div class="console-form-actions">
+          <button type="submit">
+            <span class="working"><i class="fa fa-refresh fa-spin"></i> Working...</span>
+            <span class="idle"><i class="fa fa-camera"></i> Capture</span>
+          </button>
+          <button type="reset">
+            Reset
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div class="console-panel console-panel-output">
+      <h3>
+        Output
+      </h3>
+
+      <section>
+
+        <nav style="display: none">
+          <button class="action-refresh"><i class="fa fa-refresh"></i> Refresh</button>
+          <button class="action-download"><i class="fa fa-download"></i> Download</button>
+          <button class="action-open"><i class="fa fa-external-link"></i> Open</button>
+        </nav>
+
+        <div class="capture-output-working" style="display: none">
+          <i class="fa fa-cog fa-spin"></i>
+        </div>
+
+        <div class="capture-output-complete" style="display: none">
+          <div class="capture-output-asset"></div>
+
+          <div class="endpoint">
+            <div class="example">
+              <div class="request">
+                <strong>Request URL</strong>
+                <code>&nbsp;</code>
+              </div>
+
+              <div class="response">
+                <strong>Response Body</strong>
+                <code>&nbsp;</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</form>
+
+<script type="text/javascript">
+window.capture = {};
+
+function submit() {
+  var $ = window.$,
+      $elms = window.capture.$elms,
+      url = '<%= Drone.config[:prefix] ? "/#{Drone.config[:prefix]}" : "" %>/capture.json?' + $elms.form.serialize(),
+      callbacks = {};
+
+  $elms.submit.addClass('button-working');
+  $elms.request.html('GET ' + url);
+
+  $elms.outputWorking.show();
+  $elms.outputNav.hide();
+  $elms.outputComplete.hide();
+
+  callbacks.always = function () {
+    $elms.submit.removeClass('button-working');
+  }.bind(this);
+
+  callbacks.done = function (data, status, request) {
+    var response = request.responseJSON,
+        $elms = window.capture.$elms,
+        $preview = null,
+        $link = '<a href="' + response.url + '" target="_blank">Open in new window</a>';
+
+    // <img> tag
+    if (response.params.format === 'png') {
+      $preview = $('<img>').attr('src', response.url);
+    }
+
+    // <iframe> tag
+    else {
+      $preview = $('<iframe></iframe>')
+        .attr('frameborder', '0')
+        .attr('src', response.url);
+    }
+
+    // Actions
+    $elms.actions.open.data('url', response.url);
+    $elms.actions.refresh.data('url', response.url);
+    $elms.actions.download.data('url', response.url);
+
+    $elms.outputAsset.html($preview);
+    $elms.outputWorking.hide();
+    $elms.outputComplete.show();
+    $elms.outputNav.show();
+
+    $elms.response.html(JSON.stringify(response, null, 2)
+      .replace(/ /g, '&nbsp;')
+      .replace(/\n/g, '<br>'));
+  }.bind(this);
+
+  callbacks.fail = function (data, status, request) {
+  }.bind(this);
+
+  $.ajax(url)
+    .always(callbacks.always)
+    .done(callbacks.done)
+    .fail(callbacks.fail);
+}
+
+window.deferred.push(function () {
+  var $ = window.$,
+      $elms = {
+        submit:         $('button[type="submit"]'),
+        form:           $('form#capture'),
+        outputFormat:   $('select[name="output_format"]'),
+        outputWorking:  $('.capture-output-working'),
+        outputComplete: $('.capture-output-complete'),
+        outputAsset:    $('.capture-output-asset'),
+        outputNav:      $('nav'),
+        request:        $('.request code'),
+        response:       $('.response code'),
+        advanced:       $('.console-advanced'),
+        actions: {
+          open:         $('.action-open'),
+          refresh:      $('.action-refresh'),
+          download:     $('.action-download'),
+          advanced:     $('input[type="checkbox"]')
+        }
+      };
+
+  window.capture.$elms = $elms;
+
+  $elms.actions.advanced.on('click', function (e) {
+    $elms.advanced.toggle();
+  });
+
+  $elms.actions.open.on('click', function (e) {
+    e.preventDefault();
+    window.open($(e.currentTarget).data('url'));
+  });
+
+  $elms.actions.refresh.on('click', function (e) {
+    e.preventDefault();
+    $elms.form.submit();
+  });
+
+  $elms.actions.download.on('click', function (e) {
+    e.preventDefault();
+    window.open($(e.currentTarget).data('url'), 'Download');
+  });
+
+  $elms.form.on('submit', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    submit();
+  });
+
+  $elms.outputFormat.on('change', function () {
+    $('.fieldset-output').hide();
+    $('.fieldset-output-' + $elms.outputFormat.val()).show();
+  });
+});
+
+</script>

@@ -1,0 +1,15 @@
+{
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JamesRyanATX/drone.git"
+  },
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.14"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "name": "Drone",
+  "description": "Web capture service",
+  "version": "1.0.0",
+  "author": "James Ryan <james@theryans.io>"
+}

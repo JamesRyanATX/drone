@@ -1,0 +1,101 @@
+<article>
+
+  <h3>
+    General Settings
+  </h3>
+  <section>
+    <table>
+      <tbody>
+        <% {
+          capture_path: 'Capture Path',
+          log_level: 'Log Level',
+          thread_count: 'Thread Count',
+          cycle_count: 'Cycle Count',
+          min_capture_interval: 'Min Capture Interval'
+        }.each do |attribute, label| %>
+            <td><%= label %>:</td>
+            <td>
+              <% value = Drone.config[attribute] %>
+              <% if value.is_a?(Proc) %>
+                <em>function() { ... }</em>
+              <% elsif value.nil? %>
+                <em>default</em>
+              <% else %>
+                <%= value %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <h3>
+    Recipes
+  </h3>
+  <section>
+    <table>
+      <tbody>
+        <% Drone.config[:recipes].each do |name, recipe| %>
+          <tr>
+            <td><%= name %>:</td>
+            <td><%= recipe.to_json %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <h3>
+    Credentials
+  </h3>
+  <section>
+    <table>
+      <tbody>
+        <% Drone::Credential.all.each do |credential| %>
+          <tr>
+            <td>
+              <%= credential.id %>
+              <% if credential.authorized? %>
+                (authorized)
+              <% else %>
+                (unauthorized)
+              <% end %>
+            </td>
+            <td>
+              <% credential.as_json.each do |attribute, value| %>
+                :<%= attribute %> => <%= value %><br>
+              <% end %>
+              <br>
+              <br>
+              <a href="<%= credential.authorize_uri %>" class="button">Connect</a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <h3>
+    Params
+  </h3>
+  <section>
+    <table>
+      <tbody>
+        <% Drone.config[:params].each do |name, value| %>
+          <tr>
+            <td>${<%= name %>}</td>
+            <td>
+              <% if value.is_a?(Proc) %>
+                <em>function() { ... }</em>
+              <% else %>
+                <%= value %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+</article>

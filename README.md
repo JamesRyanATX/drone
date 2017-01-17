@@ -1,6 +1,6 @@
 # Drone
 
-*this project is no longer under active development*
+*this project is no longer under active development and is provided as-is*
 
 A web capture and export microservice built around the PhantomJS headless browser.
 
@@ -17,24 +17,93 @@ A web capture and export microservice built around the PhantomJS headless browse
 
 #### Stack
 
-* Ruby 2.1+
-* Grape
-* Rack
+* Ruby
+* Node
 * PhantomJS
 * Redis
 
-## Setup
-
-Use `docker-compose up`.
 
 ## Usage
 
+### Setup
+
+Use `docker-compose up`.
+
+
+### Authentication
+
+In textbook scenario, Drone will be responsible for taking pictures of web pages for a specific application.  If the application contains sensitive data, Drone can authenticate via OAuth.
+
+
 ### Command Line
 
+#### Targets (URLs)
+
+List all active targets:
+
 ```
-# Dump current configuration
+docker-compose run web bundle exec bin/drone list
+```
+
+Add a target:
+
+```
+docker-compose run web bundle exec bin/drone add \
+  --url=http://www.google.com
+```
+
+Remove a target:
+
+```
+docker-compose run web bundle exec bin/drone remove \
+  --id=1
+```
+
+
+#### Capturing
+
+Manually capture a target:
+
+```
+docker-compose run web bundle exec bin/drone capture \
+  --id=1
+
+docker-compose run web bundle exec bin/drone capture \
+  --url=http://www.google.com
+```
+
+Capture targets via background service:
+
+```
+docker-compose run web bundle exec bin/drone work
+```
+
+#### Settings
+
+Dump current configuration:
+
+```
 docker-compose run web bundle exec bin/drone config
 ```
+
+Open a console, ala `rails console`:
+
+```
+docker-compose run web bundle exec bin/drone console
+```
+
+Synchronize and list all authentication credentials:
+
+```
+docker-compose run web bundle exec bin/drone credentials
+```
+
+Delete everything and start with a clean slate:
+
+```
+docker-compose run web bundle exec bin/drone reset
+```
+
 
 ### Web Interface
 
